@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block title%}
-<title>SuperShop | signup </title>
+<title>SuperShop | updateprofile </title>
 {% endblock%}
 {% block body %}
     <!-- breadcrumb part start-->
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
-                        <h2>signup</h2>
+                        <h2>Update Profile</h2>
                     </div>
                 </div>
             </div>
@@ -23,20 +23,16 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center w-100">
-                        <div class="login_part_text_iner">
-                            <h2>Already Have An Account</h2>
-                            <p> Create free account in our mart</p>
-                            <a href="{% url 'signup' %}" class="btn_3">SIGH-UP</a>
-                        </div>
-                    </div>
+                    {% if buyer.pic %}
+                    <img src="{{buyer.pic.url}}" height="440px"  alt="">
+                    {% else %}
+                    <img src="{% static 'img/noimage.png'%}" height="400px"  alt="">
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_form">
                         <div class="login_part_form_iner">
-                            <h3 class="text-center">Welcome to Our Shop!</h3>
-                            <h5 class="text-center"> Please provide Some Basic Details to us
-                            </h5>
+                            <h3 class="text-center">update profile</h3>
+                           
                             {% if messages %}
                             {% for m in messages %}
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -47,60 +43,64 @@
                               </div>
                               {% endfor %}      
                               {% endif %}
-                            <form class="row contact_form" action="" method="post" novalidate="novalidate">
+                            <form class="row contact_form" action="" method="post" novalidate="novalidate" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <div class="row">
-
-                                    <div class="col-md-6 form-group p_star">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="FullName">
-                                    </div>
-                            
-                                   
-
-                                    <div class="col-md-6 form-group p_star">
-                                        <input type="text" class="form-control" id="username" name="username"
-                                            placeholder="Username">
-                                    </div>
-                                </div>
                                 
                             <div class="row">
 
+                                
+                            <div class="row">
+                                
+                                <div class="row form-group p_star mx-1 w-100">
+
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="FullName" value="{{ buyer.name }}">
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6 form-group p_star">
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Email Address">
+                                        placeholder="Email Address" value="{{ buyer.email}}">
                                 </div>
                                 
                                 
                                 <div class="col-md-6 form-group p_star">
                                     <input type="text" class="form-control" id="phone" name="phone" value=""
-                                        placeholder="phone">
+                                        placeholder="phone" value="{{ buyer.phone }}">
                                 </div>
+                           
+                            <div class="col-md-12 form-group p_star 1 w-100">
+                                <textarea name="address" rows="2" class="form-control" id="address" name="address" placeholder="address here"{{ buyer.address}}></textarea>
                             </div>
 
-                            <div class="row">
-
                                 <div class="col-md-6 form-group p_star">
-                                    <input type="text" class="form-control" id="password" name="password"
-                                        placeholder="Password">
+                                    <input type="number" class="form-control" id="pin" name="pin"
+                                        placeholder="pin" value="{{ buyer.pin }}">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="city" name="city"
+                                        placeholder="city" value="{{ buyer.city }}">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <input type="text" class="form-control" id="sate" name="state"
+                                        placeholder="state" value="{{ buyer.state }}">
                                 </div>
                                 
                                 
+                                 
                                 <div class="col-md-6 form-group p_star">
-                                    <input type="text" class="form-control" id="cpassword" name="cpassword" value=""
-                                        placeholder="Confirm-Password">
+                                    <input type="file" class="form-control"  name="pic" id="pic" value=""
+                                       >
                                 </div>
                             </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="phone" name="phone" value=""
-                                    placeholder="phone">
-                            </div>
-
+                           
+                        </div>
 
                                 <div class="col-md-12 form-group">
                                    
                                     <button type="submit" value="submit" class="btn_3">
-                                        SIGH-UP
+                                        update profile
                                     </button>
                                     
                                 </div>
@@ -112,4 +112,5 @@
         </div>
     </section>
     <!--================login_part end =================-->
+    {% endif %}
 {% endblock %}

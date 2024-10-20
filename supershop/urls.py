@@ -11,7 +11,9 @@ urlpatterns = [
     path('checkout/',mainApp.checkoutpage,name="checkout"),
     path('confirmation/',mainApp.confirmationpage,name="confirmation"),
     path('contact/',mainApp.contactpage,name="contact"),
-    
+    path('profile/',mainApp.profilepage,name="profile"),
+    path('updateprofile/',mainApp.updateprofile,name="updateprofile"),
+    path('logout/',mainApp.logoutpage,name="logout"),
     path('login/',mainApp.loginpage,name="login"),
     path('signup/',mainApp.signuppage,name="signup"),
     path('shop/<str:mc>/<str:sc>/<str:br>/',mainApp.shoppage,name="shop"),

@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%}
+<title>SuperShop | profile </title>
+{% endblock%}
+{% block body %}
+
+<!-- breadcrumb part start-->
+    <section class="breadcrumb_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <h2>profile</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-6">
+            {% if buyer.pic %}
+            <img src="{{ buyer.pic.url }}"  height="420px">
+            {% else %}
+            <img src="{% static 'img/noimage.png' %}"  height="420px">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <td>{{buyer.name}}</td>
+                </tr>
+                
+                <tr>
+                    <th>UserName</th>
+                    <td>{{buyer.username}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{buyer.email}}</td>
+                </tr>
+                <tr>
+                    <th>phone</th>
+                    <td>{{buyer.phone}}</td>
+                </tr>
+                <tr>
+                    <th>address</th>
+                    <td>{{buyer.address}}</td>
+                </tr>
+                <tr>
+                    <th>pin</th>
+                    <td>{{buyer.pin}}</td>
+                </tr>
+                <tr>
+                    <th>city</th>
+                    <td>{{buyer.city}}</td>
+                </tr>
+                <tr>
+                    <th>state</th>
+                    <td>{{buyer.state}}</td>
+                </tr>
+                <tr>
+                    
+                    <td colspan="2"><a href="{% url 'updateprofile' %}" class="btn btn-primary w-100">updateprofile</a></td>
+                </tr>
+                
+            </table>
+
+        </div>
+
+
+        </div>
+
+        
+    </div>
+{% endblock %}
